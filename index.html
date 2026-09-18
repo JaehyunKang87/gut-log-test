@@ -84,9 +84,9 @@ h2{font-size:16px;font-weight:800;margin:0;letter-spacing:-.02em}
 .bhead input[type=time]{font-size:12px;border:1px solid var(--line-2);border-radius:8px;padding:5px 7px;color:#334155}
 .del{font-size:12px;color:var(--faint);padding:2px 4px}
 .del:hover{color:#DC2626}
-.grid7{display:flex;gap:8px;overflow-x:auto;padding:2px 1px 8px;scroll-snap-type:x proximity;overscroll-behavior-x:contain}
-.grid7::-webkit-scrollbar{height:3px}.grid7::-webkit-scrollbar-thumb{background:#C6DCE6;border-radius:999px}
-.cell{position:relative;flex:0 0 76px;scroll-snap-align:start}
+.grid7{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:8px 6px;padding:2px 0}
+.cell{position:relative;grid-column:span 2;min-width:0}
+.cell:nth-child(5){grid-column:2/span 2}
 .bt{width:100%;min-height:76px;border:1px solid transparent;border-radius:15px;padding:9px 8px;background:#fff;text-align:center;
   transition:border-color .12s,background .12s,box-shadow .12s}
 .bt[aria-pressed="true"]{border-color:var(--teal);background:#EAF7FC;box-shadow:0 4px 12px rgba(10,85,128,.1)}
@@ -521,7 +521,7 @@ function renderLog(){
   h+=dailyLine();
 
   h+='<section><div class="shead"><h2>배변</h2>'+(count>0?'<span class="count">'+count+'회</span>':'')+'</div>';
-  h+='<p class="hint">횟수만큼 추가한 뒤 좌우로 넘겨 형태를 선택하세요.</p>';
+  h+='<p class="hint">횟수만큼 추가한 뒤 형태를 선택하세요.</p>';
   h+='<button class="wide" data-act="bowelNone" aria-pressed="'+day.bowelNone+'" style="margin-bottom:12px">오늘 배변 없음</button>';
   if(!day.bowelNone){
     if(day.bowels.length===0) h+='<p class="empty-hint">아래 버튼으로 오늘 본 배변을 추가하세요.</p>';
